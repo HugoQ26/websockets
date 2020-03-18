@@ -6,6 +6,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   padding: 30px;
   text-align: center;
+  position: relative;
 }
 
 h1 {
@@ -15,6 +16,13 @@ h1 {
 p {
   color: #999;
   font-size: 0.8rem;
+}
+
+#add-messages-form {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .btn {
@@ -111,6 +119,18 @@ p {
 
 .show {
   display: block;
+}
+
+.users-section {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  text-align: left;
+}
+
+.users-section ul {
+  list-style: none;
+  text-align: left;
 }
 
 @-webkit-keyframes fadeIn {

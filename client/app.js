@@ -6,8 +6,11 @@ const messagesList = document.getElementById('messages-list');
 const addMessageForm = document.getElementById('add-messages-form');
 const userNameInput = document.getElementById('username');
 const messageContentInput = document.getElementById('message-content');
+const usersList = document.getElementById('users-online');
+const usersCount = document.getElementById('users-count');
 
 let userName = '';
+let users = [];
 
 const login = event => {
   event.preventDefault();
@@ -58,3 +61,18 @@ const sendMessage = event => {
 addMessageForm.addEventListener('submit', sendMessage);
 
 socket.on('message', ({ author, content }) => addMessage(author, content));
+
+const handleUsers = usr => {
+  users = [...usr];
+  usersCount.innerHTML = `Users online: ${users.length}`;
+  usersList.innerHTML = '';
+  for (const u of users) {
+    const content = `
+              <li>${u.name}</li>
+             `;
+    usersList.insertAdjacentHTML('beforeend', content);
+  }
+  console.log(users);
+};
+
+socket.on('users', ({ users }) => handleUsers(users));

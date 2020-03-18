@@ -35,6 +35,7 @@ io.on('connection', socket => {
 
   socket.on('newMember', ({ user }) => {
     users.push({ name: user, id: socket.id });
+    io.emit('users', { users });
     userName = user;
     socket.broadcast.emit('message', {
       author: 'Chat Bot',
@@ -46,6 +47,8 @@ io.on('connection', socket => {
     console.log('Oh, socket ' + socket.id + ' has left');
 
     users = users.filter(user => user.id !== socket.id);
+
+    io.emit('users', { users });
 
     socket.broadcast.emit('message', {
       author: 'Chat Bot',
