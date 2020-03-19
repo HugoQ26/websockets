@@ -20,13 +20,14 @@ app.use((req, res) => {
 });
 
 const server = app.listen(PORT, () => {
-  console.log('Server is running');
+  console.log(`Server is running on ${PORT}`);
 });
 
 const io = socket(server);
 
 io.on('connection', socket => {
   let userName = '';
+  io.emit('users', { users });
 
   socket.on('message', message => {
     messages.push(message);
